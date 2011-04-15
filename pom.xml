@@ -1,0 +1,134 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>de.jiac.micro</groupId>
+		<artifactId>microjiac</artifactId>
+		<version>3.0</version>
+	</parent>
+	
+	<groupId>de.jiac.micro.examples</groupId>
+	<artifactId>microjiac-examples</artifactId>
+	<url>${base-url}/examples</url>
+	<packaging>pom</packaging>
+
+	<name>MicroJIAC Examples</name>
+	<description>Parent module for MicroJIAC examples.</description>
+	<inceptionYear>2010</inceptionYear>
+	
+	<organization>
+		<name>DAI-Labor</name>
+		<url>http://www.dai-labor.de</url>
+	</organization>
+	<prerequisites>
+		<maven>3</maven>
+	</prerequisites>
+
+	<properties>
+		<microjiac-module-category>example</microjiac-module-category>
+		<microjiac-version>3.0</microjiac-version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.github.mcpat.libxjava</groupId>
+				<artifactId>libxjava-cldc</artifactId>
+				<version>${libxjava-version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.github.mcpat.libxjava</groupId>
+				<artifactId>libxjava-cdc</artifactId>
+				<version>${libxjava-version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.github.mcpat.libxjava</groupId>
+				<artifactId>libxjava-jse5</artifactId>
+				<version>${libxjava-version}</version>
+				<scope>compile</scope>
+			</dependency>
+			
+			<!-- Logging -->
+			<dependency>
+				<groupId>com.github.mcpat.slf4j</groupId>
+				<artifactId>slf4cldc-api</artifactId>
+				<version>${slf4j-version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.github.mcpat.slf4j</groupId>
+				<artifactId>slf4cldc-simple</artifactId>
+				<version>${slf4j-version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.github.mcpat.slf4j</groupId>
+				<artifactId>slf4cldc-nop</artifactId>
+				<version>${slf4j-version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<!-- 
+				Platforms
+			 -->
+			<dependency>
+				<groupId>de.jiac.micro.platforms.java6</groupId>
+				<artifactId>microjiac-java6-platform</artifactId>
+				<version>${microjiac-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.jiac.micro.platforms.cldc</groupId>
+				<artifactId>microjiac-midlet-platform</artifactId>
+				<version>${microjiac-version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<scm>
+		<connection>scm:git:git://github.com/mcpat/microjiac-examples-public.git</connection>
+		<developerConnection>scm:git:git://github.com/mcpat/microjiac-examples-public.git</developerConnection>
+		<url>git://github.com/mcpat/microjiac-examples-public.git</url>
+	</scm>
+	
+	<distributionManagement>
+		<site>
+			<id>${site-repo-id}</id>
+			<url>${base-site-url}/examples</url>
+		</site>
+		<repository>
+			<id>${release-repo-id}</id>
+			<name>${release-repo-id}</name>
+			<url>${release-repo-url}</url>
+		</repository>
+		<snapshotRepository>
+			<id>${snapshot-repo-id}</id>
+			<name>${snapshot-repo-id}</name>
+			<url>${snapshot-repo-url}</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<modules>
+		<module>hello-world</module>
+		<module>pingpong</module>
+		<module>prolog</module>
+		<module>scala</module>
+		<module>servicetest</module>
+		<module>simple-midlet</module>
+	</modules>
+		
+	<profiles>
+		<profile>
+			<id>__internal_examples_build__</id>
+			<activation>
+				<file>
+					<exists>internal_examples.txt</exists>
+				</file>
+			</activation>
+			<modules>
+				<module>asgard-interface-node</module>
+				<module>realtime-rtsj</module>
+			</modules>
+		</profile>
+	</profiles>
+</project>

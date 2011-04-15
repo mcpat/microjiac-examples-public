@@ -1,0 +1,92 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>de.jiac.micro.examples</groupId>
+		<artifactId>microjiac-examples</artifactId>
+		<version>3.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<groupId>de.jiac.micro.examples</groupId>
+	<artifactId>prolog</artifactId>
+	<packaging>jar</packaging>
+
+	<name>Example: Prolog-Example</name>
+	<description>Prolog example with MicroJIAC</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.jiac.micro.platforms.java6</groupId>
+			<artifactId>microjiac-java6-platform</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.prolog4j</groupId>
+			<artifactId>prolog4j-api</artifactId>
+			<version>0.2.1</version>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.prolog4j</groupId>-->
+<!--			<artifactId>prolog4j-tuprolog</artifactId>-->
+<!--			<version>0.2.1</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.prolog4j</groupId>-->
+<!--			<artifactId>prolog4j-jtrolog</artifactId>-->
+<!--			<version>0.2.1</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.prolog4j</groupId>-->
+<!--			<artifactId>prolog4j-jlog</artifactId>-->
+<!--			<version>0.2.1</version>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>org.prolog4j</groupId>
+			<artifactId>prolog4j-swi</artifactId>
+			<version>0.2.1</version>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>dev.inf.unideb.hu</id>
+			<name>Archiva Managed Internal Repository</name>
+			<url>http://dev.inf.unideb.hu:8090/archiva/repository/internal/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptors>
+						<descriptor>assembly.xml</descriptor>
+					</descriptors>
+					<outputDirectory>${project.build.directory}</outputDirectory>
+					<workDirectory>${project.build.directory}/assembly/work</workDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

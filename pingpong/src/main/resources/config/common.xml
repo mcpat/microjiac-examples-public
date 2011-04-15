@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    MicroJIAC - A Lightweight Agent Framework
+    This file is part of Example: PingPong.
+
+    Copyright (c) 2007-2011 DAI-Labor, Technische Universität Berlin
+
+    This library includes software developed at DAI-Labor, Technische
+    Universität Berlin (http://www.dai-labor.de)
+
+    This library is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this library.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<configuration xmlns="http://www.jiac.de/AAMM/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jiac.de/AAMM/1.1 http://www.jiac.de/xsd/aamm-1.1.xsd"
+	framework="MicroJIAC">
+	
+	<import namespace="de.jiac.micro.config.default" as="default"/>
+	
+	<agent id="AbstractPingPongAgent" parent="default:MicroJIACAgent">
+		<map name="property" append="true">
+			<valueEntry key="${de.jiac.micro.examples.pingpong.IPingPongConstants.GROUP_NAME_KEY}" value="pingpong" />
+		</map>
+		<agentElementRef ref="default:CommunicationElement"/>
+	</agent>
+	
+	<agent id="PingAgent" parent="AbstractPingPongAgent">
+		<agentElement class="de.jiac.micro.examples.pingpong.PingAgentElement">
+			<simple name="period" value="3000"/>
+		</agentElement>
+	</agent>
+	
+	<agent id="PongAgent" parent="AbstractPingPongAgent">
+		<agentElement class="de.jiac.micro.examples.pingpong.PongAgentElement"/>
+	</agent>
+</configuration>
